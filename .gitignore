@@ -1,0 +1,13 @@
+# Local development / credentials / saves
+.DS_Store
+.idea/
+.vscode/
+__pycache__/
+*.log
+.env
+.env.*
+*.zip
+*-save*.json
+*-backup*.json
+*.sqlite
+.git-credentials
