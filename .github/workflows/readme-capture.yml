@@ -1,0 +1,44 @@
+name: One-time README screenshot
+on:
+  push:
+    branches: [docs/readme-2026-11-25]
+    paths: ['.github/workflows/readme-capture.yml']
+permissions:
+  contents: write
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --prefix "$RUNNER_TEMP/preview" playwright@1.51.1
+          "$RUNNER_TEMP/preview/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Render real frontend in fresh browser
+        run: |
+          mkdir -p docs/screenshots
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/preview.log 2>&1 &
+          for i in $(seq 1 20); do curl -fsS http://127.0.0.1:8765/index.html -o /dev/null && break; sleep 1; done
+          "$RUNNER_TEMP/preview/node_modules/.bin/playwright" screenshot --browser chromium --viewport-size "1440,1000" --wait-for-timeout 2000 http://127.0.0.1:8765/index.html docs/screenshots/desktop.png
+          "$RUNNER_TEMP/preview/node_modules/.bin/playwright" screenshot --browser chromium --viewport-size "390,844" --wait-for-timeout 2000 http://127.0.0.1:8765/index.html docs/screenshots/mobile.png
+      - name: Add screenshots and remove one-time workflow
+        run: |
+          test -s docs/screenshots/desktop.png
+          test -s docs/screenshots/mobile.png
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('README.md')
+          t=p.read_text()
+          marker="## 2 · Technical quick reference and distribution"
+          assert marker in t
+          t=t.replace(marker, '### Frontend / Oberfläche (fresh browser profile)\n\n![Dragonfarm desktop](docs/screenshots/desktop.png)\n\n![Dragonfarm mobile](docs/screenshots/mobile.png)\n\n'+marker,1)
+          p.write_text(t)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md docs/screenshots
+          git rm .github/workflows/readme-capture.yml
+          git commit -m 'docs: capture real frontend on desktop and mobile'
+          git push origin HEAD:docs/readme-2026-11-25
