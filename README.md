@@ -8,6 +8,12 @@ Open the [GitHub Pages site](https://drizzi88.github.io/dragonfarm-reborn/) if i
 
 This is an independently recreated fan project, not an official release or a verified 1:1 port.
 
+### Frontend / Oberfläche (fresh browser profile)
+
+![Dragonfarm desktop](docs/screenshots/desktop.png)
+
+![Dragonfarm mobile](docs/screenshots/mobile.png)
+
 ## 2 · Technical quick reference and distribution
 
 <details>
