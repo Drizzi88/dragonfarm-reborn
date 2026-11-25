@@ -16,6 +16,26 @@ This is an independently recreated fan project, not an official release or a ver
 
 ## 2 · Technical quick reference and distribution
 
+The project is static HTML, CSS and JavaScript. No backend, database, package manager or build step is required.
+
+```bash
+# From the checked-out repository
+python3 -m http.server 8765 --bind 127.0.0.1
+# Open http://127.0.0.1:8765/
+# Alternative on Linux:
+bash start-linux.sh
+```
+
+| File | Purpose |
+| --- | --- |
+| [index.html](index.html) and [style.css](style.css) | Entry point and layout |
+| [game.js](game.js) | Game mechanics |
+| [world3d.js](world3d.js), [tutorial.js](tutorial.js) | Animated scenery and tutorial |
+| [sw.js](sw.js), [manifest.webmanifest](manifest.webmanifest) | Offline cache and PWA |
+| [art/](art/) | Original environment illustrations |
+
+For an existing public deployment, publish from the repository's configured GitHub Pages branch; do not recreate or overwrite the repository. Keep all asset paths relative and update the service-worker cache version when changing cached files. Browser storage is origin-specific; export a JSON backup before moving or upgrading the game. See the retained documentation below for publishing prerequisites and rights considerations.
+
 <details>
 <summary>Vorherige README mit Details aufklappen / expand original documentation</summary>
 
