@@ -1,3 +1,18 @@
+# Dragonfarm: Reborn
+
+## 1 · Play the game
+
+Dragonfarm: Reborn is an unofficial fan-made, German-language browser game inspired by Dragonfarm (2002). Explore its farm, city and island environments with a guided, event-driven beginner tutorial and procedural animated scenery. Play directly in your browser without a server account.
+
+Open the [GitHub Pages site](https://drizzi88.github.io/dragonfarm-reborn/) if it has been deployed, or run the local server described below. Progress is stored in the current browser; export/import JSON to move your save between devices. The PWA supports offline use after the assets are cached.
+
+This is an independently recreated fan project, not an official release or a verified 1:1 port.
+
+## 2 · Technical quick reference and distribution
+
+<details>
+<summary>Vorherige README mit Details aufklappen / expand original documentation</summary>
+
 # Dragonfarm: Reborn — Public GitHub Pages edition (v0.7.2)
 
 **Unofficial fan-made browser game** inspired by *Dragonfarm* (2002). This is not endorsed or published by the original game's rights holders. The gameplay, balance and visuals are independently recreated, and may differ from the 2002 game. Do not add assets, audio, original source code or manual scans from the commercial game unless you have permission.
@@ -54,3 +69,6 @@ Visit http://localhost:8765. Alternatively use `./start-linux.sh`.
 ## Limitations
 
 Gameplay mechanics are a fan reconstruction; the game isn't a verified 1:1 port of the original. Public distribution of a fan remake can still involve intellectual property or trademark concerns, even without the original assets. Obtain permission or legal advice if necessary before wide publicity.
+
+
+</details>
